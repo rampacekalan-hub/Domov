@@ -31,6 +31,51 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 reveals.forEach(el => revealObs.observe(el));
 
+// Animated counters for case studies
+const counters = document.querySelectorAll('.case-num');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseFloat(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const decimals = (el.dataset.target.includes('.')) ? 1 : 0;
+    const duration = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = (target * eased).toFixed(decimals);
+      el.textContent = prefix + val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObs.observe(c));
+
+// Cookie banner
+const banner = document.getElementById('cookie-banner');
+const COOKIE_KEY = 'nk_cookie_consent';
+function loadAnalytics() {
+  // Tu sa môžu spustiť GA / Pixel po súhlase
+  if (window.gtag) gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+}
+if (banner) {
+  const stored = localStorage.getItem(COOKIE_KEY);
+  if (!stored) banner.hidden = false;
+  else if (stored === 'accept') loadAnalytics();
+  banner.querySelectorAll('[data-cookie]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_KEY, btn.dataset.cookie);
+      banner.hidden = true;
+      if (btn.dataset.cookie === 'accept') loadAnalytics();
+    });
+  });
+}
+
 // Form submit handler with Formspree-friendly UX
 const form = document.querySelector('.contact-form');
 form?.addEventListener('submit', async (ev) => {

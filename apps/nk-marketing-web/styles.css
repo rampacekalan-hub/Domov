@@ -39,6 +39,12 @@ a{color:inherit;text-decoration:none}
 }
 .btn-primary{background:var(--navy);color:#fff}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(27,31,77,.25)}
+.btn-ghost{
+  background:transparent;color:var(--navy);
+  border:2px solid var(--navy);padding:16px 36px;
+  margin-left:12px;
+}
+.btn-ghost:hover{background:var(--navy);color:#fff}
 
 /* === Underline accent === */
 .underline{
@@ -433,6 +439,51 @@ a{color:inherit;text-decoration:none}
 }
 .logo-light{color:#fff}
 
+/* === Section subtitle === */
+.section-subtitle{
+  text-align:center;max-width:640px;margin:-40px auto 50px;
+  color:var(--muted);font-size:17px;
+}
+
+/* === Cases === */
+.section-cases{background:#fff;padding-bottom:60px}
+.cases-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+}
+.case-card{
+  background:var(--peach);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.case-meta{
+  font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;
+  color:var(--coral);
+}
+.case-stat{display:flex;flex-direction:column;gap:4px}
+.case-num{
+  font-size:48px;font-weight:800;color:var(--navy);line-height:1;
+}
+.case-label{font-size:14px;color:var(--navy);font-weight:600}
+.case-card p{margin:0;font-size:14px;color:var(--navy)}
+
+/* === Cookie banner === */
+.cookie-banner{
+  position:fixed;left:16px;right:16px;bottom:16px;
+  background:var(--navy);color:#fff;
+  border-radius:14px;padding:20px 24px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  z-index:100;
+  max-width:720px;margin:0 auto;
+}
+.cookie-inner{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.cookie-banner p{margin:0;font-size:14px;flex:1;min-width:240px}
+.cookie-actions{display:flex;gap:8px}
+.cookie-banner .btn{padding:10px 18px;font-size:14px}
+.cookie-banner .btn-ghost{color:#fff;border-color:rgba(255,255,255,.4);margin:0}
+.cookie-banner .btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+
 /* === Form note === */
 .form-note{
   font-size:12px;color:var(--muted);font-weight:400;margin:0;
@@ -463,6 +514,8 @@ a{color:inherit;text-decoration:none}
   .split-image{min-height:300px}
   .split-dark{padding:50px 28px}
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  .cases-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-ghost{margin-left:0;margin-top:12px;display:inline-block}
   .testimonials-grid{grid-template-columns:1fr 1fr}
   .process-grid{grid-template-columns:1fr;gap:40px}
   .contact-grid{grid-template-columns:1fr}
