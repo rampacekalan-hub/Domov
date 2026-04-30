@@ -5,6 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NK Marketing — Reklama na Facebooku a Instagrame</title>
 <meta name="description" content="Špecializujeme sa na reklamu na Facebooku a Instagrame. Stratégia, dáta a kreatíva, ktoré značkám prinášajú nových zákazníkov." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="NK Marketing — Reklama na Facebooku a Instagrame" />
+<meta property="og:description" content="Pomáhame značkám získavať zákazníkov vďaka reklame na sociálnych sieťach." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/og.jpg" />
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231b1f4d%22/><text x=%2250%22 y=%2268%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2255%22 font-weight=%22800%22 fill=%22white%22>NK</text></svg>" />
+
+<!-- Google Analytics 4 — nahraď G-XXXXXXXXXX svojim ID -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+
+<!-- Meta Pixel — nahraď XXXXXXXXXXXXXXX svojim Pixel ID -->
+<!--
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'XXXXXXXXXXXXXXX');
+  fbq('track', 'PageView');
+</script>
+-->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -262,17 +296,24 @@
         <li><strong>Instagram:</strong> <a href="#">@nk.marketing</a></li>
       </ul>
     </div>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Ďakujeme! Ozveme sa vám čoskoro.'); this.reset();">
+    <!-- Formspree: zaregistruj sa na formspree.io, vytvor formulár, sem prilep svoj endpoint -->
+    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <label>Meno
         <input type="text" name="name" required />
       </label>
       <label>E-mail
         <input type="email" name="email" required />
       </label>
+      <label>Telefón (nepovinné)
+        <input type="tel" name="phone" />
+      </label>
       <label>Správa
         <textarea name="message" rows="4" required></textarea>
       </label>
+      <input type="hidden" name="_subject" value="Nová správa z webu NK Marketing" />
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
       <button type="submit" class="btn btn-primary">Odoslať</button>
+      <p class="form-note">Odoslaním súhlasíte so spracovaním osobných údajov pre účely vybavenia dopytu.</p>
     </form>
   </div>
 </section>
