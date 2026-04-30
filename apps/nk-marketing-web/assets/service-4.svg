@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+  <rect width="300" height="400" fill="#d4a89c"/>
+  <!-- desk -->
+  <rect x="0" y="320" width="300" height="80" fill="#a8826a"/>
+  <!-- person seated -->
+  <circle cx="150" cy="140" r="38" fill="#3d2e26"/>
+  <path d="M100,180 Q150,170 200,180 L210,300 Q150,290 90,300 Z" fill="#e8d8c8"/>
+  <rect x="110" y="280" width="80" height="60" fill="#1b1f4d"/>
+  <!-- laptop on desk -->
+  <rect x="180" y="300" width="80" height="40" fill="#2a2a2a" rx="2"/>
+</svg>

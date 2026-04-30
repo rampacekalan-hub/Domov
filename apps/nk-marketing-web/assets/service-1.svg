@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+  <rect width="300" height="400" fill="#e8c4b3"/>
+  <!-- hand -->
+  <path d="M80,400 Q70,300 90,250 Q110,200 140,210 L160,400 Z" fill="#d4a89c"/>
+  <!-- phone -->
+  <rect x="120" y="160" width="120" height="220" rx="18" fill="#1a1a1a"/>
+  <rect x="128" y="170" width="104" height="200" rx="10" fill="#fff"/>
+  <text x="180" y="240" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#1b1f4d">ZBAV SA</text>
+  <text x="180" y="258" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#1b1f4d">SUCHEJ</text>
+  <text x="180" y="276" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#1b1f4d">POKOŽKY</text>
+  <circle cx="180" cy="320" r="20" fill="#ff7a5c"/>
+</svg>
