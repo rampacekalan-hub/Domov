@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Kontakt — {{ brand.name }}{% endblock %}
+{% block content %}
+
+<section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12">
+  <div>
+    <h1 class="text-4xl font-extrabold text-slate-900">Kontaktujte ma</h1>
+    <p class="mt-3 text-slate-600">Konzultácia je nezáväzná a zdarma. Odpoviem zvyčajne do 24 hodín.</p>
+
+    <div class="mt-8 space-y-4 text-sm">
+      <div>
+        <div class="text-slate-500">E-mail</div>
+        <a href="mailto:{{ brand.email }}" class="text-lg font-semibold text-slate-900 hover:text-brand-700">{{ brand.email }}</a>
+      </div>
+      <div>
+        <div class="text-slate-500">Telefón</div>
+        <a href="tel:{{ brand.phone|replace(' ', '') }}" class="text-lg font-semibold text-slate-900 hover:text-brand-700">{{ brand.phone }}</a>
+      </div>
+      <div>
+        <div class="text-slate-500">Realitka</div>
+        <a href="{{ brand.realitka_url }}" target="_blank" rel="noopener" class="text-lg font-semibold text-slate-900 hover:text-brand-700">{{ brand.realitka_url }}</a>
+      </div>
+    </div>
+  </div>
+
+  <form method="post" class="rounded-2xl border border-slate-200 p-6 bg-white shadow-soft space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Meno a priezvisko *</label>
+      <input name="name" required class="mt-1 w-full rounded-lg border-slate-300 focus:border-brand-500 focus:ring-brand-500" />
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700">E-mail *</label>
+        <input name="email" type="email" required class="mt-1 w-full rounded-lg border-slate-300" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700">Telefón</label>
+        <input name="phone" class="mt-1 w-full rounded-lg border-slate-300" />
+      </div>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Téma</label>
+      <select name="topic" class="mt-1 w-full rounded-lg border-slate-300">
+        <option value="">— Vyberte —</option>
+        <option>Hypotéka</option>
+        <option>Investovanie</option>
+        <option>Poistenie</option>
+        <option>Predaj nehnuteľnosti</option>
+        <option>Kúpa nehnuteľnosti</option>
+        <option>Iné</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Správa *</label>
+      <textarea name="message" rows="5" required class="mt-1 w-full rounded-lg border-slate-300"></textarea>
+    </div>
+    <button class="w-full rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 px-6 py-3 shadow-soft">Odoslať správu</button>
+    <p class="text-xs text-slate-500">Odoslaním súhlasíte so spracovaním osobných údajov za účelom vybavenia Vašej požiadavky.</p>
+  </form>
+</section>
+
+{% endblock %}

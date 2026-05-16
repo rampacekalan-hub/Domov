@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}{{ brand.name }} — {{ brand.tagline }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}Financie a reality v jednom — osobný finančný a realitný poradca. Hypotéky, investície, poistenie, predaj a prenájom nehnuteľností.{% endblock %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: {
+              50:  '#eef6ff',
+              100: '#d9eaff',
+              200: '#b6d4ff',
+              300: '#84b6ff',
+              400: '#4f8eff',
+              500: '#2766f0',
+              600: '#164ad1',
+              700: '#143ca8',
+              800: '#143488',
+              900: '#0e2660',
+            },
+            accent: { 500: '#f59e0b' }
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(20, 60, 168, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="{{ url_for('index') }}" class="flex items-center gap-2 group">
+      <span class="w-9 h-9 rounded-xl bg-brand-600 text-white grid place-items-center font-bold group-hover:bg-brand-700 transition">AR</span>
+      <span class="font-semibold text-slate-900">{{ brand.name }}</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+      <a href="{{ url_for('finance') }}" class="hover:text-brand-600">Financie</a>
+      <a href="{{ url_for('reality') }}" class="hover:text-brand-600">Reality</a>
+      <a href="{{ url_for('listings') }}" class="hover:text-brand-600">Inzeráty</a>
+      <a href="{{ url_for('about') }}" class="hover:text-brand-600">O mne</a>
+      <a href="{{ url_for('contact') }}" class="hover:text-brand-600">Kontakt</a>
+    </nav>
+    <a href="{{ url_for('contact') }}" class="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-medium hover:bg-brand-700 shadow-soft">Konzultácia zdarma</a>
+    <button id="mobile-toggle" class="md:hidden text-slate-700" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+    <div class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-slate-700">
+      <a href="{{ url_for('finance') }}">Financie</a>
+      <a href="{{ url_for('reality') }}">Reality</a>
+      <a href="{{ url_for('listings') }}">Inzeráty</a>
+      <a href="{{ url_for('about') }}">O mne</a>
+      <a href="{{ url_for('contact') }}">Kontakt</a>
+      <a href="{{ url_for('contact') }}" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-brand-600 text-white">Konzultácia zdarma</a>
+    </div>
+  </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 space-y-2">
+      {% for cat, msg in messages %}
+        <div class="rounded-lg px-4 py-3 text-sm {% if cat == 'error' %}bg-red-50 text-red-800 border border-red-200{% else %}bg-emerald-50 text-emerald-800 border border-emerald-200{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<section class="bg-gradient-to-br from-brand-700 to-brand-900 text-white mt-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold">Newsletter — financie a reality v praxi</h2>
+    <p class="mt-3 text-brand-100 max-w-2xl mx-auto">Raz mesačne praktické tipy o hypotékach, investovaní, sadzbách a aktuálnych nehnuteľnostiach z môjho portfólia.</p>
+    <form method="post" action="{{ url_for('newsletter_subscribe') }}" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+      <input type="hidden" name="source" value="footer">
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <input name="email" type="email" required placeholder="vas@email.sk" class="flex-1 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-accent-500" />
+      <button class="rounded-lg bg-accent-500 hover:bg-amber-500 text-slate-900 font-semibold px-6 py-3">Prihlásiť sa</button>
+    </form>
+    <p class="text-xs text-brand-200 mt-3">Žiadny spam. Odhlásiť sa môžete kedykoľvek.</p>
+  </div>
+</section>
+
+<footer class="bg-slate-950 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="w-9 h-9 rounded-xl bg-brand-600 text-white grid place-items-center font-bold">AR</span>
+        <span class="font-semibold text-white">{{ brand.name }}</span>
+      </div>
+      <p class="mt-4 text-sm text-slate-400">{{ brand.tagline }}. Spájam svet financií a realít pre Vaše rozhodnutia, ktoré dávajú zmysel.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Služby</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="{{ url_for('finance') }}" class="hover:text-white">Financie</a></li>
+        <li><a href="{{ url_for('reality') }}" class="hover:text-white">Reality ({{ brand.realitka }})</a></li>
+        <li><a href="{{ url_for('listings') }}" class="hover:text-white">Aktuálne inzeráty</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Kontakt</h4>
+      <ul class="space-y-2 text-sm">
+        <li>{{ brand.email }}</li>
+        <li>{{ brand.phone }}</li>
+        <li><a href="{{ brand.realitka_url }}" class="hover:text-white" target="_blank" rel="noopener">{{ brand.realitka_url }}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Info</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="{{ url_for('about') }}" class="hover:text-white">O mne</a></li>
+        <li><a href="{{ url_for('contact') }}" class="hover:text-white">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <span>© {{ now.year }} {{ brand.name }}. Všetky práva vyhradené.</span>
+      <span>{{ brand.domain }}</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/site.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Finančné služby — {{ brand.name }}{% endblock %}
+{% block content %}
+
+<section class="bg-gradient-to-br from-brand-50 to-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold">Financie — môj základ</span>
+    <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900">Finančné služby na mieru</h1>
+    <p class="mt-4 max-w-2xl text-lg text-slate-600">Nezávislé porovnanie produktov a osobný prístup. Od prvej hypotéky po dôchodok — všetko prepojené do jedného plánu.</p>
+  </div>
+</section>
+
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for s in [
+      ('Hypotéky', 'Porovnám sadzby 8 bánk, vybavím refinancovanie aj americkú hypotéku.'),
+      ('Investovanie', 'Pravidelné aj jednorázové investície — ETF, podielové fondy, dlhodobý plán.'),
+      ('Dôchodok (II. a III. pilier)', 'Nastavíme zmysluplne, nech sa Vám neminú peniaze skôr ako roky.'),
+      ('Životné poistenie', 'Bez zbytočných pripoistení — len to, čo reálne ochráni Vašu rodinu.'),
+      ('Majetkové poistenie', 'Dom, byt, auto, zodpovednosť. Porovnanie poisťovní za pár minút.'),
+      ('Finančný plán', 'Cashflow, rezerva, ciele na 5 a 10 rokov — všetko v jednom dokumente.'),
+    ] %}
+      <div class="rounded-2xl border border-slate-200 p-6 hover:border-brand-500 transition bg-white">
+        <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 grid place-items-center font-bold">€</div>
+        <h3 class="mt-4 font-semibold text-slate-900">{{ s[0] }}</h3>
+        <p class="mt-2 text-sm text-slate-600">{{ s[1] }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="py-20 bg-slate-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-slate-900">Ako spolupráca prebieha</h2>
+    <ol class="mt-10 grid md:grid-cols-4 gap-6">
+      {% for step in [
+        ('1', 'Konzultácia', 'Nezáväzné stretnutie online alebo osobne. Spoznáme sa.'),
+        ('2', 'Analýza', 'Prejdeme Vašu situáciu, ciele a aktuálne zmluvy.'),
+        ('3', 'Návrh', 'Pripravím konkrétne riešenie s porovnaním produktov.'),
+        ('4', 'Realizácia', 'Vybavím papierovačku za Vás, sledujem priebeh.'),
+      ] %}
+        <li class="rounded-2xl bg-white p-6 border border-slate-200">
+          <div class="text-brand-600 text-2xl font-bold">{{ step[0] }}</div>
+          <div class="mt-2 font-semibold text-slate-900">{{ step[1] }}</div>
+          <p class="mt-1 text-sm text-slate-600">{{ step[2] }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+    <div class="mt-12 text-center">
+      <a href="{{ url_for('contact') }}" class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 shadow-soft">Dohodnúť konzultáciu</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
