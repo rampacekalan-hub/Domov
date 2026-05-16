@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}O mne — {{ brand.name }}{% endblock %}
+{% block content %}
+
+<section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
+  <div class="aspect-square rounded-3xl overflow-hidden bg-slate-100">
+    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1000" alt="Alan Rampacek" class="w-full h-full object-cover">
+  </div>
+  <div>
+    <h1 class="text-4xl font-extrabold text-slate-900">Alan Rampacek</h1>
+    <p class="mt-2 text-brand-700 font-semibold">Finančný poradca & realitný maklér ({{ brand.realitka }})</p>
+    <p class="mt-6 text-slate-700 leading-relaxed">
+      Posledných viac ako 10 rokov sa venujem osobným financiám — hypotékam, investovaniu, poisteniu a finančnému plánovaniu.
+      Postupom času som zistil, že väčšina mojich klientov rieši aj nehnuteľnosti — a tak som sa rozhodol prepojiť oba svety.
+      Pod značkou <a class="text-brand-700 font-semibold hover:underline" href="{{ brand.realitka_url }}" target="_blank" rel="noopener">{{ brand.realitka }}</a> Vám teraz viem zariadiť kompletný realitný servis.
+    </p>
+    <p class="mt-4 text-slate-700 leading-relaxed">
+      Mojou filozofiou je transparentnosť, dlhodobé vzťahy a rozhodnutia, za ktorými si stojím aj o desať rokov.
+    </p>
+  </div>
+</section>
+
+<section class="bg-slate-50 py-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-6 text-center">
+    <div>
+      <div class="text-4xl font-extrabold text-brand-700">10+</div>
+      <div class="text-sm text-slate-600 mt-1">rokov skúseností</div>
+    </div>
+    <div>
+      <div class="text-4xl font-extrabold text-brand-700">500+</div>
+      <div class="text-sm text-slate-600 mt-1">spokojných klientov</div>
+    </div>
+    <div>
+      <div class="text-4xl font-extrabold text-brand-700">2</div>
+      <div class="text-sm text-slate-600 mt-1">prepojené oblasti</div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

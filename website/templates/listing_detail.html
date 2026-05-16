@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ item.title }} — {{ brand.realitka }}{% endblock %}
+{% block content %}
+
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <a href="{{ url_for('listings') }}" class="text-sm text-brand-600 hover:underline">← Späť na inzeráty</a>
+  <div class="mt-6 grid lg:grid-cols-5 gap-10">
+    <div class="lg:col-span-3">
+      <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
+        {% if item.image_url %}
+          <img src="{{ item.image_url }}" alt="{{ item.title }}" class="w-full h-full object-cover">
+        {% endif %}
+      </div>
+    </div>
+    <div class="lg:col-span-2">
+      <div class="flex items-center gap-2 text-xs">
+        <span class="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold uppercase">{{ item.kind }}</span>
+        <span class="px-2 py-1 rounded-md bg-slate-100 text-slate-600 font-medium uppercase">{{ item.property_type }}</span>
+      </div>
+      <h1 class="mt-3 text-3xl font-bold text-slate-900">{{ item.title }}</h1>
+      <div class="mt-2 text-slate-500">{{ item.city }}{% if item.area_m2 %} · {{ item.area_m2 }} m²{% endif %}{% if item.rooms %} · {{ item.rooms }} izby{% endif %}</div>
+      <div class="mt-6 text-4xl font-extrabold text-slate-900">{{ "{:,.0f}".format(item.price_eur).replace(",", " ") }} €{% if item.kind == 'prenajom' %}<span class="text-base font-medium text-slate-500"> / mes.</span>{% endif %}</div>
+
+      <div class="mt-8 p-5 rounded-2xl border border-slate-200">
+        <div class="font-semibold text-slate-900">Mám záujem o túto nehnuteľnosť</div>
+        <p class="text-sm text-slate-600 mt-1">Vybavím obhliadku aj financovanie — všetko v jednom.</p>
+        <a href="{{ url_for('contact') }}?topic={{ item.title|urlencode }}" class="mt-4 inline-flex items-center px-5 py-2.5 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700">Kontaktovať</a>
+      </div>
+
+      {% if item.external_url %}
+        <a href="{{ item.external_url }}" target="_blank" rel="noopener" class="mt-4 inline-flex text-sm text-brand-600 hover:underline">Detail na {{ brand.realitka }} ↗</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if item.description %}
+    <div class="mt-12 max-w-3xl">
+      <h2 class="text-xl font-bold text-slate-900">Popis</h2>
+      <p class="mt-3 text-slate-700 whitespace-pre-line">{{ item.description }}</p>
+    </div>
+  {% endif %}
+</section>
+
+{% endblock %}

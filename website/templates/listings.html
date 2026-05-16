@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Inzeráty — {{ brand.realitka }}{% endblock %}
+{% block content %}
+
+<section class="bg-gradient-to-br from-brand-50 to-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900">Aktuálne inzeráty</h1>
+    <p class="mt-3 text-slate-600 max-w-2xl">Nehnuteľnosti z portfólia {{ brand.realitka }}. Filtrujte podľa typu a lokality.</p>
+  </div>
+</section>
+
+<section class="py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <form method="get" class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-white rounded-2xl border border-slate-200 p-4 shadow-soft">
+      <select name="kind" class="rounded-lg border-slate-300 text-sm">
+        <option value="">Predaj / prenájom</option>
+        <option value="predaj"   {% if filters.kind == 'predaj' %}selected{% endif %}>Predaj</option>
+        <option value="prenajom" {% if filters.kind == 'prenajom' %}selected{% endif %}>Prenájom</option>
+      </select>
+      <select name="type" class="rounded-lg border-slate-300 text-sm">
+        <option value="">Typ nehnuteľnosti</option>
+        {% for t in ['byt','dom','pozemok','komercia'] %}
+          <option value="{{ t }}" {% if filters.type == t %}selected{% endif %}>{{ t|capitalize }}</option>
+        {% endfor %}
+      </select>
+      <input name="city" value="{{ filters.city }}" placeholder="Mesto / lokalita" class="rounded-lg border-slate-300 text-sm">
+      <button class="rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 px-4 py-2">Filtrovať</button>
+    </form>
+
+    {% if items %}
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for item in items %}{% include "_listing_card.html" %}{% endfor %}
+      </div>
+    {% else %}
+      <div class="mt-10 rounded-2xl border border-dashed border-slate-300 p-12 text-center text-slate-500">
+        Žiadne inzeráty zodpovedajúce filtru. Skúste zmeniť kritériá alebo ma <a href="{{ url_for('contact') }}" class="text-brand-600 font-semibold">kontaktujte</a>.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

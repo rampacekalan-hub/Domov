@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-brand-50 via-white to-white"></div>
+  <div class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-brand-100/60 blur-3xl -z-10"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold">Financie & Reality v jednom</span>
+      <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+        Vaše financie a bývanie pod <span class="text-brand-600">jednou strechou</span>.
+      </h1>
+      <p class="mt-5 text-lg text-slate-600 max-w-xl">
+        Som Alan Rampacek — osobný finančný poradca a od teraz aj realitný maklér pod značkou
+        <a href="{{ brand.realitka_url }}" class="text-brand-700 font-semibold hover:underline" target="_blank" rel="noopener">{{ brand.realitka }}</a>.
+        Pomôžem Vám rozhodnúť sa správne — od hypotéky až po kľúče v ruke.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="{{ url_for('contact') }}" class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 shadow-soft">Nezáväzná konzultácia</a>
+        <a href="{{ url_for('listings') }}" class="inline-flex items-center px-6 py-3 rounded-lg border border-slate-300 text-slate-800 font-medium hover:border-brand-500 hover:text-brand-700">Pozrieť inzeráty</a>
+      </div>
+      <dl class="mt-10 grid grid-cols-3 gap-6 max-w-md">
+        <div>
+          <dt class="text-3xl font-bold text-brand-700">10+</dt>
+          <dd class="text-xs text-slate-500 mt-1">rokov v financiách</dd>
+        </div>
+        <div>
+          <dt class="text-3xl font-bold text-brand-700">500+</dt>
+          <dd class="text-xs text-slate-500 mt-1">spokojných klientov</dd>
+        </div>
+        <div>
+          <dt class="text-3xl font-bold text-brand-700">2</dt>
+          <dd class="text-xs text-slate-500 mt-1">oblasti, jeden poradca</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="relative">
+      <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 shadow-soft overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200" alt="" class="w-full h-full object-cover mix-blend-overlay opacity-90">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-soft p-5 w-64">
+        <div class="text-xs text-slate-500">Aktuálna sadzba hypoték od</div>
+        <div class="text-2xl font-bold text-slate-900">3,49 %</div>
+        <div class="text-xs text-emerald-600 font-semibold mt-1">Porovnám 8 bánk za Vás</div>
+      </div>
+      <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-soft p-5 w-60">
+        <div class="text-xs text-slate-500">{{ brand.realitka }}</div>
+        <div class="text-base font-semibold text-slate-900">Realitné služby na mieru</div>
+        <div class="text-xs text-brand-600 font-medium mt-1">Predaj · Prenájom · Kúpa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Dve oblasti, jeden poradca</h2>
+      <p class="mt-4 text-slate-600">Financie sú základ, reality sú prirodzené pokračovanie. Vďaka prepojeniu šetríte čas — všetko vybavíte u jedného človeka, ktorému dôverujete.</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <a href="{{ url_for('finance') }}" class="group relative rounded-2xl border border-slate-200 p-8 hover:border-brand-500 hover:shadow-soft transition bg-white">
+        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 grid place-items-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 6-6"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-slate-900">Finančné služby</h3>
+        <p class="mt-2 text-slate-600">Hypotéky, investovanie, dôchodok, poistenie a finančný plán šitý na mieru.</p>
+        <span class="mt-5 inline-flex items-center text-brand-600 font-semibold group-hover:translate-x-1 transition">Zistiť viac →</span>
+      </a>
+
+      <a href="{{ url_for('reality') }}" class="group relative rounded-2xl border border-slate-200 p-8 hover:border-brand-500 hover:shadow-soft transition bg-white">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 grid place-items-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-slate-900">Reality — {{ brand.realitka }}</h3>
+        <p class="mt-2 text-slate-600">Predaj, kúpa a prenájom nehnuteľností. Kompletný servis od obhliadky až po kľúče.</p>
+        <span class="mt-5 inline-flex items-center text-brand-600 font-semibold group-hover:translate-x-1 transition">Zistiť viac →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between gap-4 mb-10">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Aktuálne inzeráty</h2>
+        <p class="mt-2 text-slate-600">Výber nehnuteľností z portfólia {{ brand.realitka }}.</p>
+      </div>
+      <a href="{{ url_for('listings') }}" class="hidden sm:inline-flex text-brand-600 font-semibold hover:underline">Všetky inzeráty →</a>
+    </div>
+
+    {% if featured %}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for item in featured %}
+          {% include "_listing_card.html" %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="rounded-2xl border border-dashed border-slate-300 p-12 text-center text-slate-500">
+        Inzeráty budú pridané čoskoro. Medzitým ma <a href="{{ url_for('contact') }}" class="text-brand-600 font-semibold">kontaktujte</a>.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="relative">
+      <div class="aspect-square rounded-3xl bg-gradient-to-br from-slate-100 to-brand-100 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1000" alt="Alan Rampacek" class="w-full h-full object-cover">
+      </div>
+    </div>
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Prečo ja?</h2>
+      <ul class="mt-6 space-y-4">
+        {% for item in [
+          ('Komplexný pohľad', 'Financie aj reality v jednej hlave — rozhodnutia bez kompromisov.'),
+          ('Nezávislosť', 'Porovnávam ponuky bánk a poisťovní — odporučím to najlepšie pre Vás.'),
+          ('Transparentnosť', 'Žiadny drobný text. Vždy viete, čo platíte a prečo.'),
+          ('Dlhodobý vzťah', 'Som tu nielen pri podpise zmluvy, ale aj o 5 a 10 rokov.'),
+        ] %}
+          <li class="flex gap-3">
+            <span class="mt-1 w-6 h-6 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-bold text-sm">✓</span>
+            <div>
+              <div class="font-semibold text-slate-900">{{ item[0] }}</div>
+              <div class="text-slate-600 text-sm">{{ item[1] }}</div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{{ url_for('about') }}" class="mt-8 inline-flex items-center text-brand-600 font-semibold hover:underline">Viac o mne →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
